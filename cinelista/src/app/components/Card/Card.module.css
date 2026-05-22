@@ -1,0 +1,31 @@
+.card {
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scaleY(1.02);
+}
+
+.card_poster {
+  width: 100%;
+  display: block;
+}
+
+.card_title {
+  font-size: 1.1rem;
+  color: white;
+  margin: 0 0 0.5rem 0;
+}
+
+.card_info {
+  padding: 1rem;
+}
+
+.card_description {
+  font-size: 0.9rem;
+  color: #aaa;
+}

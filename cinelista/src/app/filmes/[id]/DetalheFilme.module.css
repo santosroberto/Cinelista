@@ -1,0 +1,46 @@
+.detalhes {
+  padding: 40px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.detalhes_container {
+  display: flex;
+  gap: 32px;
+  background-color: #1f1f1f;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.detalhes_imagem {
+  width: 300px;
+  height: 400px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.detalhes_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.detalhes_info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  color: #e50914;
+}
+
+.detalhes_info p {
+  font-size: 1.05rem;
+  margin-bottom: 1.6px;
+  color: #ddd;
+}
+
+.detalhes_voltar {
+  display: block;
+  text-align: right;
+  margin-bottom: 24px;
+  color: #e50914;
+  font-weight: 500;
+}
