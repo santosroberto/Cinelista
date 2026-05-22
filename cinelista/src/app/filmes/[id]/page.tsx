@@ -44,7 +44,7 @@ const DetalheFilme = async ({ params }: Props) => {
       <div className={styles.detalhes}>
         <div className={styles.detalhes_container}>
           <Link className={styles.detalhes_voltar} href="/">Voltar</Link>
-          <section>
+          <section className={styles.detalhes_section}>
             <figure>
               <Image
                 className={styles.detalhes_imagem}

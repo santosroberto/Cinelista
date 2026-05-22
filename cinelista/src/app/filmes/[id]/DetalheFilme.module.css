@@ -5,11 +5,14 @@
 }
 
 .detalhes_container {
-  display: flex;
-  gap: 32px;
   background-color: #1f1f1f;
   padding: 24px;
   border-radius: 8px;
+}
+
+.detalhes_section {
+  display: flex;
+  gap: 32px;
 }
 
 .detalhes_imagem {

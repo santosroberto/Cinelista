@@ -2,7 +2,7 @@ import Grid from "@/app/components/Grid";
 import Title from "@/app/components/Title";
 import { getTopMovies } from "@/lib/api/tmdb";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const TopFilmes = async () => {
   
