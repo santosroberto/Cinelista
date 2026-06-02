@@ -7,7 +7,7 @@
 }
 
 .card:hover {
-  transform: scaleY(1.02);
+  transform: translateY(-2px);
 }
 
 .card_poster {
@@ -28,4 +28,10 @@
 .card_description {
   font-size: 0.9rem;
   color: #aaa;
+}
+
+.card_rating {
+  font-size: 0.9rem;
+  color: #ff4050;
+  font-weight: 600;
 }

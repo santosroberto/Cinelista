@@ -1,19 +1,31 @@
-import tmdbApi from "./axios";
 import { getTopMovies } from "./tmdb";
+import { Filme } from "@/Types/types";
 
-jest.mock("./axios");
+const mockFetch = jest.fn();
+global.fetch = mockFetch;
+
+if (typeof AbortSignal.timeout !== "function") {
+  AbortSignal.timeout = (ms: number) => {
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), ms);
+    return controller.signal;
+  };
+}
+
+beforeEach(() => {
+  mockFetch.mockReset();
+});
 
 test("Retorna Filmes em Destaque corretamente", async () => {
-  //AAA
-  //Arrange
-  const mockResults = [{ id: 1, title: "Matrix" }];
-  (tmdbApi.get as jest.Mock).mockResolvedValue({
-    data: { results: mockResults },
+  const mockResults: Filme[] = [
+    { id: 1, title: "Matrix", overview: "Um filme", poster_path: "/img.jpg", vote_average: 8.5 },
+  ];
+  mockFetch.mockResolvedValue({
+    ok: true,
+    json: async () => ({ results: mockResults }),
   });
 
-  //Act
   const filmes = await getTopMovies();
 
-  //Assert
   expect(filmes).toEqual(mockResults);
 });

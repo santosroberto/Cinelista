@@ -1,15 +1,29 @@
+import type { Metadata } from "next";
+import { Suspense } from "react";
 import Grid from "@/app/components/Grid";
 import Title from "@/app/components/Title";
+import SkeletonGrid from "@/app/components/SkeletonGrid";
 import { getPopularMovies } from "@/lib/api/tmdb";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
-const FilmesPopulares = async () => {
+export const metadata: Metadata = {
+  title: "Filmes Populares | Cinelista",
+  description: "Veja os filmes mais populares no momento no Cinelista.",
+};
+
+async function FilmesPopularesContent() {
   const filmes = await getPopularMovies();
+  return <Grid filmes={filmes} />;
+}
+
+const FilmesPopulares = () => {
   return (
     <>
       <Title title="Filmes Populares" />
-      <Grid filmes={filmes} />
+      <Suspense fallback={<SkeletonGrid />}>
+        <FilmesPopularesContent />
+      </Suspense>
     </>
   );
 };

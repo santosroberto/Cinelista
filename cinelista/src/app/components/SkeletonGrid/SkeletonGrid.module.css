@@ -1,0 +1,43 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background-color: #333;
+}
+
+.info {
+  padding: 1rem;
+}
+
+.line {
+  height: 1rem;
+  background-color: #333;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.line_title {
+  width: 80%;
+}
+
+.line_text {
+  width: 60%;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

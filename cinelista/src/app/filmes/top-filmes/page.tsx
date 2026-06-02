@@ -1,16 +1,29 @@
+import type { Metadata } from "next";
+import { Suspense } from "react";
 import Grid from "@/app/components/Grid";
 import Title from "@/app/components/Title";
+import SkeletonGrid from "@/app/components/SkeletonGrid";
 import { getTopMovies } from "@/lib/api/tmdb";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
-const TopFilmes = async () => {
-  
-  const filmes = await getTopMovies();  
+export const metadata: Metadata = {
+  title: "Top Filmes | Cinelista",
+  description: "Confira os filmes mais bem avaliados de todos os tempos no Cinelista.",
+};
+
+async function TopFilmesContent() {
+  const filmes = await getTopMovies();
+  return <Grid filmes={filmes} />;
+}
+
+const TopFilmes = () => {
   return (
     <>
       <Title title="Top Filmes" />
-      <Grid filmes={filmes} />
+      <Suspense fallback={<SkeletonGrid />}>
+        <TopFilmesContent />
+      </Suspense>
     </>
   );
 };

@@ -10,7 +10,7 @@
 }
 
 .header_logo a {
-  color: #e50914;
+  color: #ff4050;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.5rem;
@@ -19,9 +19,18 @@
 .header_nav a {
   color: #ccc;
   text-decoration: none;
+}
+
+.header_nav a + a {
   margin-left: 1rem;
 }
 
 .header_nav a:hover {
-  color: #e50914;
+  color: #ff4050;
+}
+
+.header_nav a:focus-visible {
+  outline: 2px solid #ff4050;
+  outline-offset: 2px;
+  border-radius: 2px;
 }

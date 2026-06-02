@@ -9,7 +9,7 @@ const Header = () => {
           <Link href="/">Cinelista</Link>
         </h1>
 
-        <nav className={styles.header_nav}>
+        <nav className={styles.header_nav} aria-label="Menu principal">
           <Link href="/">Inicio</Link>
           <Link href="/filmes/em-alta">Em alta</Link>
           <Link href="/filmes/populares">Populares</Link>
