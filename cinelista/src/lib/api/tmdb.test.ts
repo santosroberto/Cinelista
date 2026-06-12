@@ -4,14 +4,6 @@ import { Filme } from "@/Types/types";
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
-if (typeof AbortSignal.timeout !== "function") {
-  AbortSignal.timeout = (ms: number) => {
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), ms);
-    return controller.signal;
-  };
-}
-
 beforeEach(() => {
   mockFetch.mockReset();
 });

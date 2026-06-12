@@ -1,8 +1,9 @@
 import { Filme } from "@/Types/types";
+import { env } from "@/lib/config";
 
-const BASE_URL = process.env.TMDB_API_URL!;
+const BASE_URL = env.TMDB_API_URL;
 const headers = {
-  Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+  Authorization: `Bearer ${env.TMDB_API_KEY}`,
   "Content-Type": "application/json",
 };
 

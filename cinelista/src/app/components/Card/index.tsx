@@ -23,7 +23,9 @@ const Card = ({ filme, priority = false, fetchPriority = "auto" }: Props) => {
     return overview.slice(0, MAX_RESUME_LENGTH) + "...";
   }, [overview]);
 
-  const imgSrc = `${process.env.NEXT_PUBLIC_TMDB_API_IMG_URL}${poster_path}`;
+  const imgSrc = poster_path
+    ? `${process.env.NEXT_PUBLIC_TMDB_API_IMG_URL}${poster_path}`
+    : "/placeholder.png";
 
   return (
     <article className={styles.card}>

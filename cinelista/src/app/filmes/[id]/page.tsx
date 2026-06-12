@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./DetalheFilme.module.css";
 import { getMovieDetails } from "@/lib/api/tmdb";
+import { env } from "@/lib/config";
 
 type Props = {
   params: Promise<{
@@ -22,9 +23,9 @@ export const generateMetadata = async ({ params }: Props) => {
     openGraph: {
       title: `${details.title} | Cinelista`,
       description: details.overview,
-      images: [
-        `${process.env.NEXT_PUBLIC_TMDB_API_IMG_URL}${details.poster_path}`,
-      ],
+      images: details.poster_path
+        ? [`${env.NEXT_PUBLIC_TMDB_API_IMG_URL}${details.poster_path}`]
+        : [],
     },
   };
 };
@@ -37,6 +38,7 @@ const DetalheFilme = async ({ params }: Props) => {
   if (!details) return notFound();
 
   const { title, poster_path, overview } = details;
+  const imgSrc = poster_path ? `${env.NEXT_PUBLIC_TMDB_API_IMG_URL}${poster_path}` : "/placeholder.png";
 
   return (
     <div className={styles.detalhes}>
@@ -46,7 +48,7 @@ const DetalheFilme = async ({ params }: Props) => {
           <figure>
             <Image
               className={styles.detalhes_imagem}
-              src={`${process.env.NEXT_PUBLIC_TMDB_API_IMG_URL}${poster_path}`}
+              src={imgSrc}
               alt={`Poster do filme: ${title}`}
               width={300}
               height={450}
