@@ -4,11 +4,14 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./cinelista
 
     steps:
       - name: Checkout do código
@@ -17,12 +20,12 @@ jobs:
       - name: Instalação do Node
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: 22
 
       - name: Instalação das dependências
         run: npm install
 
-      - name: Rodar o build
+      - name: Rodar build
         run: npm run build
         env:
           TMDB_API_URL: ${{vars.TMDB_API_URL}}
