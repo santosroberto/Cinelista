@@ -65,6 +65,8 @@ jobs:
         run: npm run lint
 
       - name: Rodar testes
+        env:
+          CI: true
         run: npm run test
         
   
