@@ -8,22 +8,22 @@ Catálogo de filmes desenvolvido com **Next.js 16 (App Router)**, **React 19** e
 
 ### Resultados Antes da Otimização
 
-| Métrica | Pontuação |
-|---------|-----------|
-| **Performance** | 78/100 ⚠️ |
-| **Accessibility** | 93/100 ✅ |
+| Métrica            | Pontuação |
+| ------------------ | --------- |
+| **Performance**    | 78/100 ⚠️ |
+| **Accessibility**  | 93/100 ✅ |
 | **Best Practices** | 74/100 ⚠️ |
-| **SEO** | 92/100 ✅ |
+| **SEO**            | 92/100 ✅ |
 
 #### Métricas de Velocidade (Antes)
 
-| Métrica | Resultado | Meta | Status |
-|---------|-----------|------|--------|
-| First Contentful Paint (FCP) | 1,1 s | < 1,8 s | ✅ |
-| Total Blocking Time (TBT) | 70 ms | < 200 ms | ✅ |
-| Speed Index | 1,4 s | < 3,4 s | ✅ |
-| **Largest Contentful Paint (LCP)** | **5,9 s** | **< 2,5 s** | 🔴 |
-| Cumulative Layout Shift (CLS) | 0 | < 0,1 | ✅ |
+| Métrica                            | Resultado | Meta        | Status |
+| ---------------------------------- | --------- | ----------- | ------ |
+| First Contentful Paint (FCP)       | 1,1 s     | < 1,8 s     | ✅     |
+| Total Blocking Time (TBT)          | 70 ms     | < 200 ms    | ✅     |
+| Speed Index                        | 1,4 s     | < 3,4 s     | ✅     |
+| **Largest Contentful Paint (LCP)** | **5,9 s** | **< 2,5 s** | 🔴     |
+| Cumulative Layout Shift (CLS)      | 0         | < 0,1       | ✅     |
 
 #### Principal Problema Identificado
 
@@ -33,13 +33,13 @@ O **LCP (Largest Contentful Paint)** estava em **5,9 segundos**, mais que o dobr
 
 ### Resultados Depois da Otimização
 
-| Métrica | Resultado | Variação |
-|---------|-----------|----------|
-| **LCP** | **3,0 s** | ⬇️ -0,9s (melhoria de 23%) |
-| FCP | 1,1 s | ✅ Mantido |
-| Speed Index | 1,1 s | ✅ Mantido |
-| TBT | 110 ms | ✅ Mantido (variação normal) |
-| CLS | 0 | ✅ Mantido |
+| Métrica     | Resultado | Variação                     |
+| ----------- | --------- | ---------------------------- |
+| **LCP**     | **3,0 s** | ⬇️ -0,9s (melhoria de 23%)   |
+| FCP         | 1,1 s     | ✅ Mantido                   |
+| Speed Index | 1,1 s     | ✅ Mantido                   |
+| TBT         | 110 ms    | ✅ Mantido (variação normal) |
+| CLS         | 0         | ✅ Mantido                   |
 
 #### O que Mudou
 
@@ -55,67 +55,67 @@ O **LCP (Largest Contentful Paint)** estava em **5,9 segundos**, mais que o dobr
 
 ### Performance
 
-| Otimização | Descrição |
-|------------|-----------|
-| `fetchPriority="high"` | Prioriza download da imagem LCP no navegador |
-| `priority` no Next.js Image | Gera `<link rel="preload">` automaticamente para as 4 primeiras imagens |
-| `placeholder="blur"` | Exibe placeholder cinza enquanto a imagem carrega |
-| `sizes` prop | Browser baixa apenas o tamanho necessário da imagem |
-| ISR (`revalidate: 3600`) | Páginas estáticas com revalidação a cada 1h |
-| Streaming com Suspense | Título + skeleton aparecem imediatamente enquanto API carrega |
-| SkeletonGrid compartilhado | Componente de loading reutilizável em todas as páginas |
-| `preconnect` para TMDB CDN | Conexão TLS antecipada para imagens |
-| `formats: ["image/avif", "image/webp"]` | Next.js serve imagens em formatos modernos |
-| Dimensões corretas (185×278) | Proporção 2:3 real para posters de filme |
+| Otimização                              | Descrição                                                               |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| `fetchPriority="high"`                  | Prioriza download da imagem LCP no navegador                            |
+| `priority` no Next.js Image             | Gera `<link rel="preload">` automaticamente para as 4 primeiras imagens |
+| `placeholder="blur"`                    | Exibe placeholder cinza enquanto a imagem carrega                       |
+| `sizes` prop                            | Browser baixa apenas o tamanho necessário da imagem                     |
+| ISR (`revalidate: 3600`)                | Páginas estáticas com revalidação a cada 1h                             |
+| Streaming com Suspense                  | Título + skeleton aparecem imediatamente enquanto API carrega           |
+| SkeletonGrid compartilhado              | Componente de loading reutilizável em todas as páginas                  |
+| `preconnect` para TMDB CDN              | Conexão TLS antecipada para imagens                                     |
+| `formats: ["image/avif", "image/webp"]` | Next.js serve imagens em formatos modernos                              |
+| Dimensões corretas (185×278)            | Proporção 2:3 real para posters de filme                                |
 
 ### Accessibility
 
-| Otimização | Descrição |
-|------------|-----------|
-| `<main>` landmark | Landmark de navegação principal |
-| `aria-label` no `<nav>` | "Menu principal" para leitores de tela |
-| `aria-label` nos cards | "Ver detalhes do filme X" |
-| `aria-label` na seção | "Lista de filmes" |
-| `<article>` em vez de `<div>` | Semântica correta para cards |
-| `:focus-visible` em todos os links | Indicador visual para navegação por teclado |
-| Contraste de cor AA | `#ff4050` (4.5:1+) em vez de `#e50914` (3.13:1) |
-| Sublinhado nos links | Indicador visual não depende apenas de cor |
-| Link de recuperação no 404 | "Voltar para a página inicial" |
+| Otimização                         | Descrição                                       |
+| ---------------------------------- | ----------------------------------------------- |
+| `<main>` landmark                  | Landmark de navegação principal                 |
+| `aria-label` no `<nav>`            | "Menu principal" para leitores de tela          |
+| `aria-label` nos cards             | "Ver detalhes do filme X"                       |
+| `aria-label` na seção              | "Lista de filmes"                               |
+| `<article>` em vez de `<div>`      | Semântica correta para cards                    |
+| `:focus-visible` em todos os links | Indicador visual para navegação por teclado     |
+| Contraste de cor AA                | `#ff4050` (4.5:1+) em vez de `#e50914` (3.13:1) |
+| Sublinhado nos links               | Indicador visual não depende apenas de cor      |
+| Link de recuperação no 404         | "Voltar para a página inicial"                  |
 
 ### Best Practices
 
-| Otimização | Descrição |
-|------------|-----------|
-| Security headers | HSTS, CSP, X-Frame-Options, X-Content-Type-Options, etc. |
-| `poweredByHeader: false` | Oculta `X-Powered-By: Next.js` |
-| `metadataBase` | URLs Open Graph absolutas |
-| `robots.txt` | Configuração para crawlers |
-| `viewport` + `themeColor` | Configuração explícita de viewport |
-| `error.tsx` boundary | Tratamento gracioso de erros |
-| HTTPS em todas as URLs | Sem conteúdo misto (mixed content) |
+| Otimização                | Descrição                                                |
+| ------------------------- | -------------------------------------------------------- |
+| Security headers          | HSTS, CSP, X-Frame-Options, X-Content-Type-Options, etc. |
+| `poweredByHeader: false`  | Oculta `X-Powered-By: Next.js`                           |
+| `metadataBase`            | URLs Open Graph absolutas                                |
+| `robots.txt`              | Configuração para crawlers                               |
+| `viewport` + `themeColor` | Configuração explícita de viewport                       |
+| `error.tsx` boundary      | Tratamento gracioso de erros                             |
+| HTTPS em todas as URLs    | Sem conteúdo misto (mixed content)                       |
 
 ### Código
 
-| Otimização | Descrição |
-|------------|-----------|
-| Remoção de SVGs não utilizados | 5 arquivos removidos de `public/` |
+| Otimização                        | Descrição                                     |
+| --------------------------------- | --------------------------------------------- |
+| Remoção de SVGs não utilizados    | 5 arquivos removidos de `public/`             |
 | Remoção de `useResumoFilmes` hook | Código morto removido (inlined com `useMemo`) |
-| Remoção de imports não utilizados | `useEffect`, `console.error` removidos |
-| CSS deduplicado | `@keyframes pulse` definido 1 vez em vez de 3 |
-| SkeletonGrid compartilhado | Componente reutilizável em vez de 3 cópias |
-| Merge de `@media dark` blocks | 2 blocos duplicados mesclados em 1 |
-| `vote_average.toFixed(1)` | Formatação numérica consistente |
+| Remoção de imports não utilizados | `useEffect`, `console.error` removidos        |
+| CSS deduplicado                   | `@keyframes pulse` definido 1 vez em vez de 3 |
+| SkeletonGrid compartilhado        | Componente reutilizável em vez de 3 cópias    |
+| Merge de `@media dark` blocks     | 2 blocos duplicados mesclados em 1            |
+| `vote_average.toFixed(1)`         | Formatação numérica consistente               |
 
 ---
 
 ## Stack Tecnológica
 
-| Tecnologia | Versão |
-|------------|--------|
-| Next.js | 16.2.7 |
-| React | 19.2.7 |
-| TypeScript | 5.9.3 |
-| Jest | 29.7.0 |
+| Tecnologia      | Versão |
+| --------------- | ------ |
+| Next.js         | 16.2.7 |
+| React           | 19.2.7 |
+| TypeScript      | 5.9.3  |
+| Jest            | 29.7.0 |
 | Testing Library | 16.3.2 |
 
 ---
@@ -211,6 +211,12 @@ Dados obtidos via [TMDB API v3](https://developer.themoviedb.org/docs):
 - `/movie/{id}` — Detalhes de um filme
 
 ---
+
+## Link da Vercel: https://vercel.com/santosroberto850-6839s-projects/cinelista (Pagina do projeto)
+
+## Link da Vercel site Online: https://cinelista-theta.vercel.app/
+
+## Link do Github: https://github.com/santosroberto/Cinelista.git
 
 ## Licença
 
