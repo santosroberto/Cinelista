@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    paths: # Só dispara se arquivos nessas pastas mudarem
+    paths:
       - "src/**" # Mudanças no código fonte
       - ".github/workflows/**" # Mudanças nos próprios pipelines
 
@@ -13,7 +13,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: ./cinelista
@@ -42,7 +41,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     needs: build
-
     defaults:
       run:
         working-directory: ./cinelista
@@ -65,8 +63,37 @@ jobs:
         run: npm run lint
 
       - name: Rodar testes
+        run: npm run test
         env:
           CI: true
-        run: npm run test
+          run: npm run test
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: tests
+    defaults:
+      run:
+        working-directory: ./cinelista
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalação do Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: ./cinelista/package-lock.json
+
+      - name: Instalação Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy para Vercel
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         
   
